@@ -31,6 +31,7 @@ void addVideoGame();
 void deleteVideoGame();
 void updateVideoGame();
 void searchVideoGame();
+void getAllVideoGames();
 
 /*Inicio del programa*/
 int main() {
@@ -63,24 +64,27 @@ int main() {
                 searchVideoGame(); // Llama a la función de Buscar
                 break;
             case 5:
+                getAllVideoGames(); // Llama a la función de Mostrar Todos
+                break;
+            case 6:
                 printf("\nSaliendo del programa...\n");
                 break;
             default:
                 // El mensaje de opción inválida se maneja durante la entrada si no es un número
                 // Aquí se manejan los números fuera del rango esperado
                 if (option != 0) { // Si la opción es 0, el error por no ser número ya se mostró
-                   printf("\nOpción no válida. Por favor, elija una opción del 1 al 5.\n");
+                   printf("\nOpción no válida. Por favor, elija una opción del 1 al 6.\n");
                 }
                 break;
         }
         // Pausa simple para permitir leer la salida antes de mostrar el menú de nuevo
-        if (option != 5) {
+        if (option != 6) {
             printf("\nPresione Enter para continuar...");
             // Espera a que el usuario presione Enter
             getchar(); // Espera el Enter
         }
 
-    } while (option != 5); // El bucle continúa hasta que se elige la opción 5
+    } while (option != 6); // El bucle continúa hasta que se elige la opción 5
 
     return 0; // Termina el programa
 }
@@ -390,6 +394,34 @@ void searchVideoGame() {
 }
 
 /**
+ * @brief Muestra todos los videojuegos almacenados en el catálogo.
+ * Itera sobre el arreglo 'catalog' hasta el índice 'count' y muestra los detalles
+ * de cada videojuego registrado. Si el catálogo está vacío, informa al usuario.
+ */
+void getAllVideoGames() {
+    // Verifica si hay videojuegos en el catálogo
+    if (count == 0) {
+        printf("\nEl catálogo está vacío. No hay videojuegos para mostrar.\n");
+        return; // Termina la función si no hay nada que mostrar
+    }
+
+    printf("\n--- Catálogo Completo de Videojuegos (%d juegos) ---\n", count);
+
+    // Itera sobre cada videojuego registrado y lo muestra
+    for (int i = 0; i < count; i++) {
+        printf("\nVideojuego #%d:\n", i + 1); // Muestra un índice para facilitar la lectura
+        printf("  Nombre:       %s\n", catalog[i].name);
+        printf("  Género:       %s\n", catalog[i].genre);
+        printf("  Plataforma:   %s\n", catalog[i].platform);
+        printf("  Año:          %d\n", catalog[i].releaseYear);
+        printf("  Calificación: %d/10\n", catalog[i].rating); // Añadido "/10" para claridad
+        // Puedes añadir una línea separadora si lo deseas:
+        printf("-----------------------------------------\n");
+    }
+     printf("\nFin del catálogo.\n");
+}
+
+/**
  * @brief Muestra las opciones del menú principal (Interfaz de usuario en español).
  */
 void displayMenu() {
@@ -402,8 +434,8 @@ void displayMenu() {
     printf("2. Eliminar Videojuego\n");
     printf("3. Modificar Videojuego\n");
     printf("4. Buscar Videojuego\n");
-    // printf("X. Mostrar Todos\n"); // Opción futura si se necesita
-    printf("5. Salir\n");
+    printf("5. Mostrar Todos\n");
+    printf("6. Salir\n");
     printf("-------------------------------\n");
     printf("Seleccione una opción: ");
 }
