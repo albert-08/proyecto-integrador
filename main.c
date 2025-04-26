@@ -415,7 +415,7 @@ void getAllVideoGames() {
         printf("  Plataforma:   %s\n", catalog[i].platform);
         printf("  Año:          %d\n", catalog[i].releaseYear);
         printf("  Calificación: %d/10\n", catalog[i].rating); // Añadido "/10" para claridad
-        // Puedes añadir una línea separadora si lo deseas:
+        
         printf("-----------------------------------------\n");
     }
      printf("\nFin del catálogo.\n");
